@@ -1,6 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.junit.Assert.*;
 
 public class AddToWishlistTest {
 
@@ -32,10 +35,20 @@ public class AddToWishlistTest {
     }
 
     private void login(String username, String password) {
-        driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label")).click();
-        driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a")).click();
-        driver.findElement(By.id("email")).sendKeys(username);
-        driver.findElement(By.id("pass")).sendKeys(password);
-        driver.findElement(By.cssSelector("#send2 > span > span")).click();
+        WebElement spanLabel = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
+        assertEquals(spanLabel.getText(), "ACCOUNT");
+        spanLabel.click();
+        WebElement a = driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a"));
+        assertEquals(a.getText(), "Log In");
+        a.click();
+        WebElement email = driver.findElement(By.id("email"));
+        assertEquals(email.getText(), "");
+        email.sendKeys(username);
+        WebElement pass = driver.findElement(By.id("pass"));
+        assertEquals(pass.getText(), "");
+        pass.sendKeys(password);
+        WebElement span2 = driver.findElement(By.cssSelector("#send2 > span > span"));
+        assertEquals(span2.getText(), "LOGIN");
+        span2.click();
     }
 }

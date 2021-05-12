@@ -1,6 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.junit.Assert.*;
 
 public class LogInTest {
 
@@ -9,7 +12,8 @@ public class LogInTest {
         System.setProperty("webdriver.chrome.driver","Resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://testfasttrackit.info/selenium-test/");
-        driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label")).click();
+        WebElement span1 = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
+        span1.click();
 //        WebElement element = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
 //        element.click();
         driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a")).click();
